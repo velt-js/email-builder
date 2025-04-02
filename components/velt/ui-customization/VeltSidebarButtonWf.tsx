@@ -1,6 +1,6 @@
 import { VeltSidebarButtonWireframe } from '@veltdev/react';
-import { MessageSquare } from 'lucide-react';
 
+// [VELT] Wireframe for the sidebar button.
 const VeltSidebarButtonWf = () => {
   return (
     <VeltSidebarButtonWireframe>

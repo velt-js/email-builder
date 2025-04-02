@@ -1,5 +1,6 @@
 import { VeltNotificationsToolWireframe } from '@veltdev/react';
 
+// [VELT] Wireframe for the notification tool.
 const VeltNotificationToolWF = () => {
   return (
     <VeltNotificationsToolWireframe>

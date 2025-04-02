@@ -1,6 +1,6 @@
 import { VeltCommentToolWireframe } from '@veltdev/react';
-import { MessageSquare } from 'lucide-react';
 
+// [VELT] Wireframe for the comment tool.
 const VeltCommentToolWf = () => {
   return (
     <VeltCommentToolWireframe>

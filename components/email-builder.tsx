@@ -20,7 +20,7 @@ import {
   LinkIcon,
   PanelLeft,
 } from "lucide-react"
-import { useCommentUtils, useVeltClient, VeltCommentTool, VeltSidebarButton } from "@veltdev/react"
+import { VeltCommentTool, VeltSidebarButton } from "@veltdev/react"
 interface EmailContent {
   from: string
   subject: string
@@ -35,8 +35,6 @@ interface EmailContent {
 type DeviceType = "desktop" | "tablet" | "mobile"
 
 export default function EmailBuilder() {
-  const commentUtils = useCommentUtils();
-  const { client } = useVeltClient();
   const [device, setDevice] = useState<DeviceType>("mobile")
   const [darkMode, setDarkMode] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -102,6 +100,7 @@ export default function EmailBuilder() {
           </Button>
 
           <div className="flex items-center gap-3">
+            {/* [VELT] Comment tool and sidebar buttons */}
             <VeltCommentTool />
             <VeltSidebarButton />
             <Button variant="outline" size="sm" className="h-8 flex items-center gap-2">

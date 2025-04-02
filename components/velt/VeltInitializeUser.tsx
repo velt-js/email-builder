@@ -5,31 +5,13 @@ import { useVeltClient } from '@veltdev/react';
 export default function VeltInitializeUser() {
   const { client } = useVeltClient();
   const hardcodedUser = {
-    userId: 'user-4',
+    userId: 'user-1',
     name: 'Dwight Schrute',
     email: 'dwight@example.com',
     color: '#FF5733',
     textColor: '#FFFFFF',
     organizationId: 'email-editor-org-1'
   };
-
-  // const hardcodedUser = {
-  //   userId: 'user-2',
-  //   name: 'Bridgette Haymaker',
-  //   email: 'bridgette@example.com',
-  //   color: '#FF5733',
-  //   textColor: '#FFFFFF',
-  //   organizationId: 'payroll-review-org-1'
-  // };
-
-  // const hardcodedUser = {
-  //   userId: 'user-3',
-  //   name: 'Eric Harris',
-  //   email: 'eric@example.com',
-  //   color: '#FF5733',
-  //   textColor: '#FFFFFF',
-  //   organizationId: 'payroll-review-org-1'
-  // };
 
   // Initialize Velt with user info and token
   useEffect(() => {
