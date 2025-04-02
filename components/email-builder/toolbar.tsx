@@ -1,22 +1,22 @@
 import { Button } from "@/components/ui/button";
-import { Monitor, Smartphone, Tablet, PanelLeft, Moon, ImageIcon, LinkIcon } from "lucide-react";
-import { DeviceType } from "./types";
+import { Monitor, Smartphone, Tablet, PanelLeft, Moon, Sun, ImageIcon, LinkIcon } from "lucide-react";
+import { DeviceType, ThemeMode } from "./types";
+import { useEmailBuilder } from "./context";
 
 interface ToolbarProps {
-  device: DeviceType;
-  setDevice: (device: DeviceType) => void;
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
   setPreviewId: (id: string) => void;
 }
 
 export function Toolbar({
-  device,
-  setDevice,
   sidebarOpen,
   setSidebarOpen,
   setPreviewId,
 }: ToolbarProps) {
+  // Use the email builder context
+  const { config, setDevice, setMode } = useEmailBuilder();
+
   return (
     <div className="flex items-center gap-2">
       <Button
@@ -31,7 +31,7 @@ export function Toolbar({
 
       <div className="flex border rounded-md overflow-hidden">
         <button
-          className={`p-2 ${device === "desktop" ? "bg-secondary" : "bg-transparent"}`}
+          className={`p-2 ${config.device === "desktop" ? "bg-secondary" : "bg-transparent"}`}
           onClick={() => {
             setDevice("desktop");
             setPreviewId("desktop-preview");
@@ -40,7 +40,7 @@ export function Toolbar({
           <Monitor className="h-5 w-5" />
         </button>
         <button
-          className={`p-2 ${device === "tablet" ? "bg-secondary" : "bg-transparent"}`}
+          className={`p-2 ${config.device === "tablet" ? "bg-secondary" : "bg-transparent"}`}
           onClick={() => {
             setDevice("tablet");
             setPreviewId("tablet-preview");
@@ -49,7 +49,7 @@ export function Toolbar({
           <Tablet className="h-5 w-5" />
         </button>
         <button
-          className={`p-2 ${device === "mobile" ? "bg-secondary" : "bg-transparent"}`}
+          className={`p-2 ${config.device === "mobile" ? "bg-secondary" : "bg-transparent"}`}
           onClick={() => {
             setDevice("mobile");
             setPreviewId("mobile-preview");
@@ -59,9 +59,14 @@ export function Toolbar({
         </button>
       </div>
 
-      <Button variant="outline" size="sm" className="h-9 flex items-center gap-2">
-        <Moon className="h-4 w-4" />
-        <span>Dark Mode</span>
+      <Button 
+        variant="outline" 
+        size="sm" 
+        className={`h-9 flex items-center gap-2 ${config.mode === "dark" ? "bg-secondary" : ""}`}
+        onClick={() => setMode(config.mode === "dark" ? "light" : "dark")}
+      >
+        {config.mode === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        <span>{config.mode === "dark" ? "Dark Mode" : "Light Mode"}</span>
       </Button>
 
       <Button variant="outline" size="sm" className="h-9 flex items-center gap-2">

@@ -6,10 +6,9 @@ import { Header } from "./header";
 import { Toolbar } from "./toolbar";
 import { EditorSidebar } from "./editor-sidebar";
 import { EmailPreview } from "./email-preview";
+import { useEmailBuilder } from "./context";
 
 export default function EmailBuilder() {
-  const [device, setDevice] = useState<DeviceType>("mobile");
-  const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [previewId, setPreviewId] = useState<string>("mobile-preview");
   
@@ -31,24 +30,27 @@ export default function EmailBuilder() {
     mobile: {...defaultContent, subject: "📝 Mobile Newsletter Preview"},
   });
 
+  // Access the config from context
+  const { config } = useEmailBuilder();
+
   const handleContentChange = (key: keyof EmailContent, value: string | string[]) => {
     setDeviceContent((prev) => ({
       ...prev,
-      [device]: {
-        ...prev[device],
+      [config.device]: {
+        ...prev[config.device],
         [key]: value
       }
     }));
   };
 
   const handleStatisticChange = (index: number, value: string) => {
-    const newStats = [...deviceContent[device].statistics];
+    const newStats = [...deviceContent[config.device].statistics];
     newStats[index] = value;
     handleContentChange("statistics", newStats);
   };
 
   // Current content based on selected device
-  const currentContent = deviceContent[device];
+  const currentContent = deviceContent[config.device];
 
   return (
     <div className="w-full max-w-5xl mx-auto bg-white rounded-lg border shadow-sm">
@@ -57,8 +59,6 @@ export default function EmailBuilder() {
         
         <div className="flex flex-col gap-5">
           <Toolbar 
-            device={device}
-            setDevice={setDevice}
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
             setPreviewId={setPreviewId}
@@ -75,7 +75,7 @@ export default function EmailBuilder() {
               )}
 
               <EmailPreview 
-                device={device}
+                device={config.device}
                 previewId={previewId}
                 currentContent={currentContent}
               />

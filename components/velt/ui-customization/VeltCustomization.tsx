@@ -1,7 +1,8 @@
-import { VeltCommentDialogWireframe, VeltWireframe } from '@veltdev/react';
+import { VeltCommentDialogWireframe, VeltData, VeltWireframe } from '@veltdev/react';
 import VeltSidebarButtonWf from './VeltSidebarButtonWf';
 import VeltCommentToolWf from './VeltCommentToolWf';
 import VeltNotificationToolWF from './VeltNotificationToolWf';
+import VeltCommentDialogBodyWf from './VeltCommentDialogBodyWf';
 
 // [VELT] Contains the wireframs for Velt components.
 const VeltCustomization = () => {
@@ -15,7 +16,9 @@ const VeltCustomization = () => {
 
       {/* [VELT] Wireframe for the notification tool */}
       <VeltNotificationToolWF />
-      {/* <VeltCommentDialogWireframe.Header veltIf='{false}' /> */}
+
+      {/* [VELT] Wireframe for the comment dialog */}
+      <VeltCommentDialogBodyWf />
     </VeltWireframe>
   );
 };

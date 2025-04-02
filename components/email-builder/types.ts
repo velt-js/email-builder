@@ -9,4 +9,11 @@ export interface EmailContent {
   companyName: string;
 }
 
-export type DeviceType = "desktop" | "tablet" | "mobile"; 
+export type DeviceType = "desktop" | "tablet" | "mobile";
+
+export type ThemeMode = "light" | "dark";
+
+export interface EmailBuilderConfig {
+  device: DeviceType;
+  mode: ThemeMode;
+} 
