@@ -86,7 +86,7 @@ export default function EmailBuilder() {
             <p className="text-sm text-muted-foreground">Preview and test your email across different devices</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">jonylt@gmail.com</span>
+            <span className="text-sm text-muted-foreground">noreply@company.com</span>
             <Button variant="ghost" size="icon" className="h-8 w-8">
               <ExternalLink className="h-4 w-4" />
             </Button>
@@ -115,7 +115,7 @@ export default function EmailBuilder() {
             <Button
               variant="outline"
               size="sm"
-              className="h-9 flex items-center gap-2 mr-2"
+              className="h-9 flex items-center gap-2 mr-2 w-36 justify-center"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <PanelLeft className="h-4 w-4" />
@@ -169,175 +169,178 @@ export default function EmailBuilder() {
           </div>
 
           <div className="flex gap-6">
-            {/* Editing Sidebar */}
-            {sidebarOpen && (
-              <div className="w-64 shrink-0 border-r pr-4">
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="from" className="text-xs">
-                      From:
-                    </Label>
-                    <Input
-                      id="from"
-                      value={currentContent.from}
-                      onChange={(e) => handleContentChange("from", e.target.value)}
-                      className="h-8 text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="subject" className="text-xs">
-                      Subject:
-                    </Label>
-                    <Input
-                      id="subject"
-                      value={currentContent.subject}
-                      onChange={(e) => handleContentChange("subject", e.target.value)}
-                      className="h-8 text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="title" className="text-xs">
-                      Title:
-                    </Label>
-                    <Input
-                      id="title"
-                      value={currentContent.title}
-                      onChange={(e) => handleContentChange("title", e.target.value)}
-                      className="h-8 text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="featuredUpdate" className="text-xs">
-                      Featured Update:
-                    </Label>
-                    <Textarea
-                      id="featuredUpdate"
-                      value={currentContent.featuredUpdate}
-                      onChange={(e) => handleContentChange("featuredUpdate", e.target.value)}
-                      className="text-sm min-h-[80px]"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="specialOffer" className="text-xs">
-                      Special Offer:
-                    </Label>
-                    <Textarea
-                      id="specialOffer"
-                      value={currentContent.specialOffer}
-                      onChange={(e) => handleContentChange("specialOffer", e.target.value)}
-                      className="text-sm min-h-[60px]"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="text-xs">Statistics:</Label>
-                    {currentContent.statistics.map((stat, index) => (
-                      <Input
-                        key={index}
-                        value={stat}
-                        onChange={(e) => handleStatisticChange(index, e.target.value)}
-                        className="h-8 text-sm mb-2"
-                      />
-                    ))}
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
+            {/* Sidebar and Preview Container with fixed positions */}
+            <div className="relative w-full">
+              {/* Absolutely positioned sidebar */}
+              {sidebarOpen && (
+                <div className="absolute top-0 left-0 w-64 h-full border-r pr-4 bg-white z-10 overflow-y-auto">
+                  <div className="space-y-4 pb-10">
                     <div>
-                      <Label htmlFor="year" className="text-xs">
-                        Year:
+                      <Label htmlFor="from" className="text-xs">
+                        From:
                       </Label>
                       <Input
-                        id="year"
-                        value={currentContent.year}
-                        onChange={(e) => handleContentChange("year", e.target.value)}
+                        id="from"
+                        value={currentContent.from}
+                        onChange={(e) => handleContentChange("from", e.target.value)}
                         className="h-8 text-sm"
                       />
                     </div>
+
                     <div>
-                      <Label htmlFor="companyName" className="text-xs">
-                        Company:
+                      <Label htmlFor="subject" className="text-xs">
+                        Subject:
                       </Label>
                       <Input
-                        id="companyName"
-                        value={currentContent.companyName}
-                        onChange={(e) => handleContentChange("companyName", e.target.value)}
+                        id="subject"
+                        value={currentContent.subject}
+                        onChange={(e) => handleContentChange("subject", e.target.value)}
                         className="h-8 text-sm"
                       />
                     </div>
+
+                    <div>
+                      <Label htmlFor="title" className="text-xs">
+                        Title:
+                      </Label>
+                      <Input
+                        id="title"
+                        value={currentContent.title}
+                        onChange={(e) => handleContentChange("title", e.target.value)}
+                        className="h-8 text-sm"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="featuredUpdate" className="text-xs">
+                        Featured Update:
+                      </Label>
+                      <Textarea
+                        id="featuredUpdate"
+                        value={currentContent.featuredUpdate}
+                        onChange={(e) => handleContentChange("featuredUpdate", e.target.value)}
+                        className="text-sm min-h-[80px]"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="specialOffer" className="text-xs">
+                        Special Offer:
+                      </Label>
+                      <Textarea
+                        id="specialOffer"
+                        value={currentContent.specialOffer}
+                        onChange={(e) => handleContentChange("specialOffer", e.target.value)}
+                        className="text-sm min-h-[60px]"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-xs">Statistics:</Label>
+                      {currentContent.statistics.map((stat, index) => (
+                        <Input
+                          key={index}
+                          value={stat}
+                          onChange={(e) => handleStatisticChange(index, e.target.value)}
+                          className="h-8 text-sm mb-2"
+                        />
+                      ))}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <Label htmlFor="year" className="text-xs">
+                          Year:
+                        </Label>
+                        <Input
+                          id="year"
+                          value={currentContent.year}
+                          onChange={(e) => handleContentChange("year", e.target.value)}
+                          className="h-8 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="companyName" className="text-xs">
+                          Company:
+                        </Label>
+                        <Input
+                          id="companyName"
+                          value={currentContent.companyName}
+                          onChange={(e) => handleContentChange("companyName", e.target.value)}
+                          className="h-8 text-sm"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Email Preview */}
-            <div className="email-preview-container">
-              <div className="flex-1">
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <span className="text-sm font-medium mr-2">From:</span>
-                    <span className="text-sm">{currentContent.from}</span>
+              {/* Email Preview - Always centered */}
+              <div className="flex justify-center w-full">
+                <div className="max-w-xl">
+                  <div className="space-y-3">
+                    <div className="flex items-center">
+                      <span className="text-sm font-medium mr-2">From:</span>
+                      <span className="text-sm">{currentContent.from}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                      <span className="text-sm font-medium mr-2">Subject:</span>
+                      <span className="text-sm">{currentContent.subject}</span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center">
-                    <span className="text-sm font-medium mr-2">Subject:</span>
-                    <span className="text-sm">{currentContent.subject}</span>
-                  </div>
-                </div>
+                  <Separator className="my-4" />
 
-                <Separator className="my-4" />
+                  <div id={previewId} data-id={previewId} key={previewId}
+                    className={`${
+                      device === "mobile" ? "max-w-[320px]" : device === "tablet" ? "max-w-[600px]" : "w-full"
+                    } mx-auto`}
+                  >
+                    <div className="space-y-6">
+                      <div className="text-center py-4 px-6 bg-gray-50 rounded-sm">
+                        <h1 className="text-lg font-medium">{currentContent.title}</h1>
+                      </div>
 
-                <div id={previewId} data-id={previewId} key={previewId}
-                  className={`${
-                    device === "mobile" ? "max-w-[320px]" : device === "tablet" ? "max-w-[600px]" : "w-full"
-                  } mx-auto`}
-                >
-                  <div className="space-y-6">
-                    <div className="text-center py-4 px-6 bg-gray-50 rounded-sm">
-                      <h1 className="text-lg font-medium">{currentContent.title}</h1>
-                    </div>
+                      <div className="space-y-1 px-1">
+                        <h2 className="text-sm font-medium flex items-center gap-1.5">
+                          <span>⭐</span>
+                          <span>Featured Update</span>
+                        </h2>
+                        <p className="text-sm">{currentContent.featuredUpdate}</p>
+                      </div>
 
-                    <div className="space-y-1 px-1">
-                      <h2 className="text-sm font-medium flex items-center gap-1.5">
-                        <span>⭐</span>
-                        <span>Featured Update</span>
-                      </h2>
-                      <p className="text-sm">{currentContent.featuredUpdate}</p>
-                    </div>
+                      <div className="bg-gray-100 p-4 rounded-sm space-y-1 relative">
+                        <h2 className="text-sm font-medium flex items-center gap-1.5">
+                          <span>🎉</span>
+                          <span>Special Offer</span>
+                        </h2>
+                        <p className="text-sm">{currentContent.specialOffer}</p>
 
-                    <div className="bg-gray-100 p-4 rounded-sm space-y-1 relative">
-                      <h2 className="text-sm font-medium flex items-center gap-1.5">
-                        <span>🎉</span>
-                        <span>Special Offer</span>
-                      </h2>
-                      <p className="text-sm">{currentContent.specialOffer}</p>
+                        <Avatar className="h-8 w-8 absolute top-4 right-4 bg-blue-500">
+                          <AvatarFallback>J</AvatarFallback>
+                        </Avatar>
+                      </div>
 
-                      <Avatar className="h-8 w-8 absolute top-4 right-4 bg-blue-500">
-                        <AvatarFallback>J</AvatarFallback>
-                      </Avatar>
-                    </div>
+                      <div className="space-y-2 px-1">
+                        <h2 className="text-sm font-medium flex items-center gap-1.5">
+                          <span>📊</span>
+                          <span>Latest Statistics</span>
+                        </h2>
+                        <ul className="space-y-1.5 text-sm">
+                          {currentContent.statistics.map((stat, index) => (
+                            <li key={index} className="flex items-baseline gap-2">
+                              <span className="text-xs">•</span> {stat}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div className="space-y-2 px-1">
-                      <h2 className="text-sm font-medium flex items-center gap-1.5">
-                        <span>📊</span>
-                        <span>Latest Statistics</span>
-                      </h2>
-                      <ul className="space-y-1.5 text-sm">
-                        {currentContent.statistics.map((stat, index) => (
-                          <li key={index} className="flex items-baseline gap-2">
-                            <span className="text-xs">•</span> {stat}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                      <Separator className="my-2" />
 
-                    <Separator className="my-2" />
-
-                    <div className="text-center text-xs text-gray-500">
-                      © {currentContent.year} {currentContent.companyName}. All rights reserved.
+                      <div className="text-center text-xs text-gray-500">
+                        © {currentContent.year} {currentContent.companyName}. All rights reserved.
+                      </div>
                     </div>
                   </div>
                 </div>
