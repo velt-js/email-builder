@@ -6,13 +6,11 @@ import { useEmailBuilder } from "./context";
 interface ToolbarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
-  setPreviewId: (id: string) => void;
 }
 
 export function Toolbar({
   sidebarOpen,
   setSidebarOpen,
-  setPreviewId,
 }: ToolbarProps) {
   // Use the email builder context
   const { config, setDevice, setMode } = useEmailBuilder();
@@ -32,28 +30,19 @@ export function Toolbar({
       <div className="flex border rounded-md overflow-hidden">
         <button
           className={`p-2 ${config.device === "desktop" ? "bg-secondary" : "bg-transparent"}`}
-          onClick={() => {
-            setDevice("desktop");
-            setPreviewId("desktop-preview");
-          }}
+          onClick={() => setDevice("desktop")}
         >
           <Monitor className="h-5 w-5" />
         </button>
         <button
           className={`p-2 ${config.device === "tablet" ? "bg-secondary" : "bg-transparent"}`}
-          onClick={() => {
-            setDevice("tablet");
-            setPreviewId("tablet-preview");
-          }}
+          onClick={() => setDevice("tablet")}
         >
           <Tablet className="h-5 w-5" />
         </button>
         <button
           className={`p-2 ${config.device === "mobile" ? "bg-secondary" : "bg-transparent"}`}
-          onClick={() => {
-            setDevice("mobile");
-            setPreviewId("mobile-preview");
-          }}
+          onClick={() => setDevice("mobile")}
         >
           <Smartphone className="h-5 w-5" />
         </button>

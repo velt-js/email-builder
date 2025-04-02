@@ -18,7 +18,9 @@ export function EmailBuilderProvider({ children }: { children: ReactNode }) {
   // Combine state into a single config object
   const config: EmailBuilderConfig = {
     device,
-    mode
+    mode,
+    // Derive previewId from device type
+    previewId: `${device}-preview`
   };
 
   return (

@@ -16,4 +16,5 @@ export type ThemeMode = "light" | "dark";
 export interface EmailBuilderConfig {
   device: DeviceType;
   mode: ThemeMode;
+  previewId: string;
 } 

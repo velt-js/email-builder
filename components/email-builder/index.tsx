@@ -9,8 +9,7 @@ import { EmailPreview } from "./email-preview";
 import { useEmailBuilder } from "./context";
 
 export default function EmailBuilder() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [previewId, setPreviewId] = useState<string>("mobile-preview");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   const defaultContent: EmailContent = {
     from: "marketing@company.com",
@@ -61,7 +60,6 @@ export default function EmailBuilder() {
           <Toolbar 
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
-            setPreviewId={setPreviewId}
           />
 
           <div className="flex gap-6">
@@ -76,7 +74,7 @@ export default function EmailBuilder() {
 
               <EmailPreview 
                 device={config.device}
-                previewId={previewId}
+                previewId={config.previewId}
                 currentContent={currentContent}
               />
             </div>
