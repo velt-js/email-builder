@@ -291,7 +291,7 @@ export default function EmailBuilder() {
 
                 <Separator className="my-4" />
 
-                <div id={previewId} data-id={previewId}
+                <div id={previewId} data-id={previewId} key={previewId}
                   className={`${
                     device === "mobile" ? "max-w-[320px]" : device === "tablet" ? "max-w-[600px]" : "w-full"
                   } mx-auto`}
